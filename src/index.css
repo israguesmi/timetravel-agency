@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-obsidian-950 text-white font-body antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold-400/30 text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-400 to-gold-500 text-obsidian-950 font-semibold rounded-lg transition-all duration-300 hover:from-gold-300 hover:to-gold-400 hover:shadow-lg hover:shadow-gold-400/25 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-gold-400/50 text-gold-400 font-medium rounded-lg transition-all duration-300 hover:bg-gold-400/10 hover:border-gold-400 active:scale-95;
+  }
+
+  .card-luxury {
+    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-obsidian-800/80 to-obsidian-900/80 backdrop-blur-sm border border-gold-400/10 transition-all duration-500 hover:border-gold-400/30 hover:shadow-2xl hover:shadow-gold-400/10;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent;
+  }
+}
