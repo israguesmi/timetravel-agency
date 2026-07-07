@@ -138,7 +138,7 @@ export default function DestinationQuiz({ isOpen, onClose }: Props) {
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
             className="relative w-full max-w-lg bg-obsidian-950 border border-gold-400/20 rounded-2xl shadow-2xl p-6 sm:p-8"
           >
-            <buttons
+            <button
               onClick={handleClose}
               className="absolute top-4 right-4 text-gray-400 hover:text-gold-400 transition-colors"
               aria-label="Fermer"
