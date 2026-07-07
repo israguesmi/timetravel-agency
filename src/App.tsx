@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Clock, MapPin, Sparkles, ArrowRight, Send } from 'lucide-react';
+import ChatWidget from './components/ChatWidget';
+import DestinationQuiz from './components/DestinationQuiz';
 
 const destinations = [
   {
@@ -131,7 +133,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ onOpenQuiz }: { onOpenQuiz: () => void }) {
   return (
     <section
       id="hero"
@@ -196,6 +198,19 @@ function Hero() {
         </div>
 
         <div
+          className="mt-6 flex items-center justify-center animate-fade-in"
+          style={{ animationDelay: '0.9s', opacity: 0 }}
+        >
+          <button
+            onClick={onOpenQuiz}
+            className="inline-flex items-center gap-2 text-sm font-medium text-gold-400 hover:text-gold-300 underline underline-offset-4 decoration-gold-400/40 transition-colors duration-300"
+          >
+            <Sparkles className="w-4 h-4" />
+            Trouvez votre destination ideale
+          </button>
+        </div>
+
+        <div
           className="mt-16 sm:mt-20 flex flex-wrap items-center justify-center gap-8 sm:gap-16 text-center animate-fade-in"
           style={{ animationDelay: '1s', opacity: 0 }}
         >
@@ -232,6 +247,7 @@ function DestinationCard({ destination }: { destination: typeof destinations[0] 
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       whileHover={{ y: -6 }}
+      id={`destination-${destination.id}`}
       className={`card-luxury group cursor-pointer transition-all duration-500 ease-out ${
         isHovered ? 'scale-[1.03]' : 'scale-100'
       }`}
@@ -442,14 +458,18 @@ function Footer() {
 }
 
 function App() {
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-obsidian-950">
       <Header />
       <main>
-        <Hero />
+        <Hero onOpenQuiz={() => setIsQuizOpen(true)} />
         <Destinations />
       </main>
       <Footer />
+      <ChatWidget />
+      <DestinationQuiz isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
     </div>
   );
 }
